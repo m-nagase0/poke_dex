@@ -9,11 +9,11 @@ class ImageFromUrl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (imageUrl == null || imageUrl == "") {
-      return Icon(Icons.broken_image);
+      return const Icon(Icons.broken_image);
     } else {
       return CachedNetworkImage(
         imageUrl: imageUrl!,
-        placeholder: (context, url) => Center(
+        placeholder: (context, url) => const Center(
           child: CircularProgressIndicator(),
         ),
         errorWidget: (context, url, error) => const Icon(Icons.broken_image),

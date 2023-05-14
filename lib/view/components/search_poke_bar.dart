@@ -23,7 +23,7 @@ class SearchPokeBar extends StatelessWidget {
           controller: textEditingController,
           decoration: const InputDecoration(
             icon: Icon(Icons.search),
-            hintText: "ポケモンの名前で検索",
+            hintText: "search for name or number",
             border: InputBorder.none,
           ),
         ),

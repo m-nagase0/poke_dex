@@ -14,7 +14,7 @@ class TypeChips extends StatelessWidget {
           pokemon.types!.length,
               (index) =>
               Chip(
-                label: Text(pokemon.types![index].name!, style: TextStyle(color: Colors.white),),
+                label: Text(pokemon.types![index].name!, style: const TextStyle(color: Colors.white),),
                 backgroundColor: getTypeColor(pokemon.types![index].name),
               ),
         )

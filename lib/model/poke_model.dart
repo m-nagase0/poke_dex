@@ -10,9 +10,10 @@ class Pokemon {
   final int? height;
   final int? weight;
   final List<Type>? types;
+  final List<Map<String, dynamic>>? abilities;
   @JsonKey(name: "sprites") final ImageUrl? imageUrl;
 
-  Pokemon({this.id, this.name, this.height, this.weight, this.types, this.imageUrl});
+  Pokemon({this.id, this.name, this.height, this.weight, this.types, this.imageUrl, this.abilities});
 
   factory Pokemon.fromJson(Map<String, dynamic> json) => _$PokemonFromJson(json);
   Map<String, dynamic> toJson() => _$PokemonToJson(this);
