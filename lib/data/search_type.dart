@@ -1,4 +1,5 @@
 enum SearchType {
+
   region,
   keyword
 }
