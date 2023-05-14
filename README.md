@@ -1,16 +1,18 @@
 # poke_picture_book
 
-A new Flutter project.
+オリジナルのポケモン図鑑アプリです。
+データはpokeapiから取得しています。
 
-## Getting Started
+使用している主なパッケージは以下のものです
 
-This project is a starting point for a Flutter application.
+　//
+provider
+http
+json_annotation
+cached_network_image
+build_runner
+json_serializable
+//
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+providerで状態管理を行なっています。
+また、MVVMを意識した設計を行いました。
