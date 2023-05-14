@@ -16,7 +16,6 @@ class PokeIndividualPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.read<ChangeLooksViewModel>();
 
-
     List pokeImages = [
       pokemon.imageUrl?.front_default,
       pokemon.imageUrl?.back_default,
@@ -24,69 +23,99 @@ class PokeIndividualPage extends StatelessWidget {
       pokemon.imageUrl?.back_shiny,
     ];
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(pokemon.name ?? ""),
-      ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 40,
+    return WillPopScope(
+      onWillPop: () {
+        viewModel.imageNumber = 0;
+        return Future.value(true);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Center(
+            child: Text(
+              pokemon.name ?? "",
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            Container(
-              width: 300,
-              height: 250,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: const Offset(0, 3),
-                    )
-                  ]),
-              child: Consumer<ChangeLooksViewModel>(
-                builder: (context, model, child) {
-                  return CachedNetworkImage(
-                    fit: BoxFit.contain,
-                    imageUrl: pokeImages[viewModel.imageNumber],
-                  );
-                },
+          ),
+        ),
+        body: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 40,
               ),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            Text(
-              "No.${pokemon.id}",
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+              Container(
+                width: 300,
+                height: 250,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: const Offset(0, 3),
+                      )
+                    ]),
+                child: Consumer<ChangeLooksViewModel>(
+                  builder: (context, model, child) {
+                    return CachedNetworkImage(
+                      fit: BoxFit.contain,
+                      imageUrl: pokeImages[viewModel.imageNumber],
+                    );
+                  },
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Text(
-              "Name:${pokemon.name}",
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+              const SizedBox(
+                height: 24,
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            SizedBox(
-              width: 300,
-              child: Row(
+              Text(
+                "No.${pokemon.id}",
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                "Name:${pokemon.name}",
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SizedBox(
+                width: 300,
+                child: Row(
+                  children: [
+                    const Text(
+                      "Types",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    TypeChips(pokemon: pokemon),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Types",
+                    "Ability",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -95,34 +124,15 @@ class PokeIndividualPage extends StatelessWidget {
                   const SizedBox(
                     width: 8,
                   ),
-                  TypeChips(pokemon: pokemon),
+                  AbilityChips(pokemon: pokemon),
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Ability",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                AbilityChips(pokemon: pokemon),
-              ],
-            ),
-            LooksChips(
-              pokemon: pokemon,
-              onLooksChipSelected: (index) => changePokeImage(context, index),
-            ),
-          ],
+              LooksChips(
+                pokemon: pokemon,
+                onLooksChipSelected: (index) => changePokeImage(context, index),
+              ),
+            ],
+          ),
         ),
       ),
     );

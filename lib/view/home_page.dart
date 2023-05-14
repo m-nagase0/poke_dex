@@ -10,7 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   int currentIndex = 0;
   List pages = [const PokeListPage(), const SecretPage()];
 
@@ -18,26 +17,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PokeDex'),
-
+        title: const Center(child: Text('PokeDex')),
       ),
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.book),
-                label: "Pictorial Book",
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.info),
-                label: "Secret"
-            )
-          ],
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: "Pictorial Book",
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.info), label: "Secret")
+        ],
         currentIndex: currentIndex,
         onTap: (int index) {
-            setState(() {
-              currentIndex = index;
-            });
+          setState(() {
+            currentIndex = index;
+          });
         },
       ),
     );

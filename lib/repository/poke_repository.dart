@@ -36,7 +36,7 @@ class PokeRepository {
       case SearchType.region:
         // TODO: Handle this case.
         if (region?.regionId == 0) {
-          for (int index = kantoFirstNumber; index <= 10; index++) {
+          for (int index = kantoFirstNumber; index <= kantoEndNumber; index++) {
             final requestUri = Uri.parse("$baseUrl$index");
             response = await http.get(requestUri);
             if (response.statusCode == 200) {
