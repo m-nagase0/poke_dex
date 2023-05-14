@@ -12,24 +12,25 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   int currentIndex = 0;
-  List pages = [PokeListPage(), SecretPage()];
+  List pages = [const PokeListPage(), const SecretPage()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ポケモン図鑑'),
+        title: const Text('PokeDex'),
+
       ),
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.book),
-                label: "図鑑",
+                label: "Pictorial Book",
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.info),
-                label: "シークレット"
+                label: "Secret"
             )
           ],
         currentIndex: currentIndex,

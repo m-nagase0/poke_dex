@@ -17,11 +17,11 @@ class _RegionChipsState extends State<RegionChips> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 1.0,
+      spacing: 4.0,
         children: List.generate(regions.length, (int index) {
 
           return ChoiceChip(
-            label: Text(regions[index].regionName, style: TextStyle(color: Colors.white),),
+            label: Text(regions[index].regionName, style: const TextStyle(color: Colors.white),),
             selected: value == index,
             selectedColor: Colors.red,
             backgroundColor: Colors.grey,

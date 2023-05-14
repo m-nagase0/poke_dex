@@ -6,7 +6,7 @@ class PokeTile extends StatelessWidget {
   final Pokemon pokemon;
   final ValueChanged onPokeTileClicked;
 
-  PokeTile({super.key, required this.pokemon, required this.onPokeTileClicked});
+  const PokeTile({super.key, required this.pokemon, required this.onPokeTileClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -27,32 +27,45 @@ class PokeTile extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       children: [
                         const Text(
-                          "No：",
+                          "No.",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(pokemon.id.toString()),
+                        Text(
+                          pokemon.id.toString(),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                     ),
                     Row(
                       children: [
                         const Text(
-                          "Name：",
+                          "Name:",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(pokemon.name ?? ""),
+                        Text(
+                          pokemon.name ?? "",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
                   ],

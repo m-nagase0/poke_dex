@@ -4,7 +4,7 @@ import 'package:poke_picture_book/data/search_type.dart';
 import 'package:poke_picture_book/model/poke_model.dart';
 import 'package:poke_picture_book/view/components/poke_tile.dart';
 import 'package:poke_picture_book/view/components/region_chips.dart';
-import 'package:poke_picture_book/view/components/search_bar.dart';
+import 'package:poke_picture_book/view/components/search_poke_bar.dart';
 import 'package:poke_picture_book/view/poke_individual_page.dart';
 import 'package:poke_picture_book/viewmodel/poke_data_view_model.dart';
 import 'package:provider/provider.dart';
@@ -17,15 +17,15 @@ class PokeListPage extends StatelessWidget {
     final viewModel = context.read<PokeDataViewModel>();
     if (!viewModel.isLoading) {
       Future(() => viewModel.getPokeData(
-          searchType: SearchType.all_poke, region: regions[0]));
+          searchType: SearchType.region, region: regions[0]));
     }
 
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () => onRefresh(context),
-          child: Icon(Icons.refresh),
           tooltip: "更新",
+          child: const Icon(Icons.refresh),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -42,7 +42,7 @@ class PokeListPage extends StatelessWidget {
                 child: Consumer<PokeDataViewModel>(
                   builder: (context, model, child) {
                     return model.isLoading
-                        ? Center(
+                        ? const Center(
                             child: CircularProgressIndicator(),
                           )
                         : ListView.builder(
@@ -77,13 +77,11 @@ class PokeListPage extends StatelessWidget {
     final viewModel = context.read<PokeDataViewModel>();
     await viewModel.getPokeData(
         searchType: SearchType.keyword, keyword: pokeName);
-    print("$pokeName");
   }
 
   Future<void> getRegionData(BuildContext context, Region region) async {
     final viewModel = context.read<PokeDataViewModel>();
     await viewModel.getPokeData(searchType: SearchType.region, region: region);
-    print("${region.regionName}");
   }
 
   // TODO ポケモン詳細画面

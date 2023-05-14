@@ -7,7 +7,7 @@ import 'package:poke_picture_book/repository/poke_repository.dart';
 class PokeDataViewModel extends ChangeNotifier {
   final PokeRepository _repository = PokeRepository();
 
-  SearchType _searchType = SearchType.all_poke;
+  SearchType _searchType = SearchType.region;
   SearchType get searchType => _searchType;
 
   Region _region = regions[0];
